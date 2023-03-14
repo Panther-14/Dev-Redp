@@ -5,17 +5,17 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EjemploHTTP.Model
+namespace ClienteHttpBasico.Model
 {
-    public static class ClienteBasicoHTTP
+    public class ClienteBasicoHTTP
     {
         public static async Task<HttpResponseMessage> ejecutarPeticion(string url, string metodo)
         {
-            using(var httpClient = new HttpClient())
+            using (var httpClient = new HttpClient())
             {
                 HttpRequestMessage request = null;
                 HttpResponseMessage response = null;
-                switch(metodo)
+                switch (metodo)
                 {
                     case "GET":
                         request = new HttpRequestMessage(HttpMethod.Get, url);
