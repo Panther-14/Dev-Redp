@@ -1,0 +1,25 @@
+﻿<Window x:Class="ConversorDeDivisas.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ConversorDeDivisas"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Button Content="Convertir" HorizontalAlignment="Left" Margin="359,371,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <RadioButton x:Name="RadioButtonPesos" Content="Pesos" HorizontalAlignment="Left" Margin="220,77,0,0" VerticalAlignment="Top"/>
+        <RadioButton Content="Dolares" HorizontalAlignment="Left" Margin="306,77,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TextboxImporte" HorizontalAlignment="Left" Margin="265,153,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="187"/>
+        <Label Content="Importe" HorizontalAlignment="Left" Margin="69,149,0,0" VerticalAlignment="Top"/>
+        <Label Content="Resultado
+               " HorizontalAlignment="Left" Margin="67,199,0,0" VerticalAlignment="Top"/>
+        <Label Content="Tasa de cambio" HorizontalAlignment="Left" Margin="67,251,0,0" VerticalAlignment="Top"/>
+        <Label Content="Fecha y hora de actualización (UTC):" HorizontalAlignment="Left" Margin="45,295,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TextboxResultado" HorizontalAlignment="Left" Margin="265,203,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="187"/>
+        <TextBox x:Name="TextboxTasaCambio" HorizontalAlignment="Left" Margin="265,255,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="187"/>
+        <TextBox x:Name="TextboxHora" HorizontalAlignment="Left" Margin="265,299,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="187"/>
+        <Label Content="Tipo de cambio" HorizontalAlignment="Left" Margin="95,77,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>
