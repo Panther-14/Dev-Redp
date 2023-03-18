@@ -8,16 +8,17 @@ using System.Threading.Tasks;
 
 namespace ConversorDeDivisas.Model.api
 {
-    public class DivisaServices
+    public class DivisasServices
     {
-        private static readonly string
-           URL_BASE = "https://openexchangerates.org/api/";
-        private static readonly string
-            API_ID = "e77f99c02f404d34a3631b67223d85e5";
 
-        public static async Task<RespuestaServices> GetTasasConversion()
+        private static readonly string
+        URL_BASE = "https://openexchangerates.org/api/";
+        private static readonly string
+        APP_ID = "e77f99c02f404d34a3631b67223d85e5";
+
+        public static async Task<RespuestaServices> getTasasConversion()
         {
-            RespuestaServices respuesta = new RespuestaServices();
+            RespuestaServices res = new RespuestaServices();
             using (var httpClient = new HttpClient())
             {
 
@@ -25,7 +26,7 @@ namespace ConversorDeDivisas.Model.api
                 HttpResponseMessage response;
                 try
                 {
-                    string url = string.Format("{0}latest.json?app_id={1}", URL_BASE, API_ID);
+                    string url = string.Format("{0}latest.json?app_id={1}", URL_BASE, APP_ID);
 
                     request = new HttpRequestMessage(HttpMethod.Get, url);
                     response = await httpClient.SendAsync(request);
@@ -34,44 +35,42 @@ namespace ConversorDeDivisas.Model.api
                     {
                         if (response.IsSuccessStatusCode)
                         {
-                            // string responseJson = await response.Content.ReadAsStringAsync();
-
-                            TasasConversion tasas = await response.Content.ReadFromJsonAsync<TasasConversion>();
+                            TasasConversion tasas =
+                            await response.Content.ReadFromJsonAsync<TasasConversion>();
 
                             if (tasas != null && tasas.Disclaimer != null && tasas.Rates != null)
                             {
-                                respuesta.Error = false;
-                                respuesta.Mensaje = "OK";
-                                respuesta.Tasas = tasas;
-
+                                res.Error = false;
+                                res.Mensaje = "OK";
+                                res.Tasas = tasas;
                             }
                             else
                             {
-                                respuesta.Error = true;
-                                respuesta.Mensaje = "No se deserealizo la respuesta JSON...";
+                                res.Error = true;
+                                res.Mensaje = "No se deserializar la respuesta en JSON...";
                             }
                         }
                         else
                         {
-                            respuesta.Error = true;
-                            respuesta.Mensaje = string.Format("Error. {0} - {1}", (int)response.StatusCode, response.IsSuccessStatusCode);
+                            res.Error = true;
+                            res.Mensaje = String.Format("Error: {0} - {1}",
+                            (int)response.StatusCode, response.StatusCode);
                         }
                     }
                     else
                     {
-                        respuesta.Error = true;
-                        respuesta.Mensaje = "No se puede obtener respuesta del servicio web";
+                        res.Error = true;
+                        res.Mensaje = "No se puede obtener respuesta del servicio web";
                     }
-
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    respuesta.Error = true;
-                    respuesta.Mensaje = e.Message;
-
+                    res.Error = true;
+                    res.Mensaje = ex.Message;
                 }
-
+                return res;
             }
         }
+
     }
 }
