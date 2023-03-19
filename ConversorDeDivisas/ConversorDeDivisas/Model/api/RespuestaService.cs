@@ -12,5 +12,6 @@ namespace ConversorDeDivisas.Model.api
         public bool Error { get; set; }
         public string Mensaje { get; set; }
         public TasasConversion Tasas { get; set; }
+        public List<Moneda> Monedas { get; set; }
     }
 }
